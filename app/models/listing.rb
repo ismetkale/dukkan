@@ -8,8 +8,8 @@ class Listing < ActiveRecord::Base
     	has_attached_file :image, 
   							:styles => { :medium => "200x", :thumb => "100x100>" }, 
   							:default_url => "no.jpg",
-							
-							:storage => :dropbox,
+
+                :storage => :dropbox,
     						:dropbox_credentials => Rails.root.join("config/dropbox.yml"),
     						:path => ":style/:id_:filename"
    	end
@@ -21,5 +21,6 @@ class Listing < ActiveRecord::Base
     validates :price, numericality: { greater_than: 0 }
 
     belongs_to :user
+    has_many :orders
 
 end
